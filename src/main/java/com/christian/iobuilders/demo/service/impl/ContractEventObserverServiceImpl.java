@@ -1,7 +1,7 @@
 package com.christian.iobuilders.demo.service.impl;
 
 import com.christian.iobuilders.demo.contracts.TestLurien;
-import com.christian.iobuilders.demo.repository.ClaimRepository;
+import com.christian.iobuilders.demo.repository.UserRepository;
 import com.christian.iobuilders.demo.service.ContractEventObserverService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ContractEventObserverServiceImpl implements ContractEventObserverSe
     Web3j web3j;
 
     @Autowired
-    private ClaimRepository claimRepository;
+    private UserRepository userRepository;
 
     ObjectMapper mapper = new ObjectMapper();
 

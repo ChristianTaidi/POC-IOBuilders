@@ -20,17 +20,17 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ClaimRepositoryTest {
+public class UserRepositoryTest {
 
     @Autowired
-    private ClaimRepository realRepository;
+    private UserRepository realRepository;
 
     @Bean
-    private ClaimRepository mockRepository(){
-        return Mockito.mock(ClaimRepository.class);
+    private UserRepository mockRepository(){
+        return Mockito.mock(UserRepository.class);
     }
 
-    ClaimRepository mockRepository = mockRepository();
+    UserRepository mockRepository = mockRepository();
 
     @Before
     public void init(){

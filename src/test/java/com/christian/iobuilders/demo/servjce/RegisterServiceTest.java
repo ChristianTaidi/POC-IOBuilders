@@ -1,15 +1,16 @@
 package com.christian.iobuilders.demo.servjce;
 
-import com.christian.iobuilders.demo.pojos.Claim;
-import com.christian.iobuilders.demo.repository.ClaimRepository;
+import com.christian.iobuilders.demo.pojos.User;
 import com.christian.iobuilders.demo.service.RegisterService;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,22 +19,34 @@ public class RegisterServiceTest {
     @Autowired
     private RegisterService registerService;
 
-    @MockBean
-    private ClaimRepository repository;
+   // @MockBean
+    //private Repository repository;
 
     @Test
     public void test_regServiceInits(){
-        Assertions.assertThat(registerService).isNotNull();
+        assertThat(registerService).isNotNull();
+    }
+/*
+    @Test
+    public void test_repositoryInits(){
+        assertThat(repository).isNotNull();
+    }
+*/
+    @Test
+    public void whenUserRegistered_thenCredentialsAreGenerated(){
+        Object result = registerService.register(mockUser());
+        assertThat((Map)result).containsKeys("key-pair");
     }
 
     @Test
-    public void test_repositoryInits(){
-        Assertions.assertThat(repository).isNotNull();
+    public void whenUserInputIsWrong_thenErrorIsReturned(){
+
     }
 
 
 
-    private Claim mockClaim(){
-        return new Claim("TEST_CLAIM","DEFAULT JSON");
+
+    private User mockUser(){
+        return new User("test","test", "test@");
     }
 }
