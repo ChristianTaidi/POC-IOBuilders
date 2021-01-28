@@ -1,8 +1,4 @@
 package com.christian.iobuilders.demo.repository;
-import com.christian.iobuilders.demo.pojos.Claim;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,7 +23,7 @@ public class UserRepositoryTest {
     }
 
     UserRepository mockRepository = mockRepository();
-
+/*
     @Before
     public void init(){
         Claim claim = mockClaim();
@@ -76,5 +68,5 @@ public class UserRepositoryTest {
     private Claim mockClaim(){
         return new Claim("TEST_CLAIM","DEFAULT JSON");
     }
-
+*/
 }

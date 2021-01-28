@@ -1,11 +1,14 @@
 package com.christian.iobuilders.demo.pojos;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.web3j.crypto.ECKeyPair;
+import org.web3j.crypto.WalletFile;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.Map;
 
 @Entity
@@ -31,16 +34,18 @@ public class User {
     @NotNull
     @Size(min=8)
     private String password;
-    private Map credentials;
+
+    private int balance;
 
     public User(){
         //JPA default constructor
     }
 
-    public User(String dni, String name, String email){
+    public User(String dni, String name, String email,String password){
         this.dni = dni;
         this.name = name;
         this.email = email;
+        this.password = password;
     }
 
     public String getPassword() {
@@ -83,7 +88,11 @@ public class User {
         this.email = email;
     }
 
-    public void setCredentials(Map credentials) {
-        this.credentials = credentials;
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 }

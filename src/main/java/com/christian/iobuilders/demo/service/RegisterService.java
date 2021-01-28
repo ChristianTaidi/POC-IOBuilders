@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 
 public interface RegisterService {
 
-    String register(User user);
+    User register(User user);
 
 }

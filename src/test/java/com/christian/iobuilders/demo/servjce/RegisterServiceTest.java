@@ -33,9 +33,10 @@ public class RegisterServiceTest {
     }
 */
     @Test
-    public void whenUserRegistered_thenCredentialsAreGenerated(){
-        Object result = registerService.register(mockUser());
-        assertThat((Map)result).containsKeys("key-pair");
+    public void whenUserRegistered_thenIDIsGenerated(){
+
+        User user = registerService.register(mockUser());
+        assertThat(user).extracting(User::getId).isNotEmpty();
     }
 
     @Test
@@ -47,6 +48,7 @@ public class RegisterServiceTest {
 
 
     private User mockUser(){
-        return new User("test","test", "test@");
+        return new User("test","test", "test@","pass");
+
     }
 }

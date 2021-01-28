@@ -3,6 +3,7 @@ package com.christian.iobuilders.demo.pojos;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Transaction {
@@ -11,23 +12,21 @@ public class Transaction {
     @GeneratedValue
     private Long id;
 
-
-    private String senderPublicKey;
-    private String receiverPublicKey;
+    @NotNull
+    private Long senderId;
+    @NotNull
+    private Long receiverId;
+    @NotNull
     private int amount;
 
     public Transaction(){
         //JPA default constructor
     }
 
-    public Transaction(String sender, int amount) {
-        this.senderPublicKey = sender;
-        this.amount = amount;
-    }
 
-    public Transaction(String sender, String receiver, int amount) {
-        this.senderPublicKey = sender;
-        this.receiverPublicKey = receiver;
+
+    public Transaction(Long receiver, int amount) {
+        this.receiverId = receiver;
         this.amount = amount;
     }
 
@@ -39,20 +38,12 @@ public class Transaction {
         this.id = id;
     }
 
-    public String getSenderPublicKey() {
-        return senderPublicKey;
+    public Long getReceiverId() {
+        return receiverId;
     }
 
-    public void setSenderPublicKey(String senderPublicKey) {
-        this.senderPublicKey = senderPublicKey;
-    }
-
-    public String getReceiverPublicKey() {
-        return receiverPublicKey;
-    }
-
-    public void setReceiverPublicKey(String receiverPublicKey) {
-        this.receiverPublicKey = receiverPublicKey;
+    public void setReceiverId(Long receiverId) {
+        this.receiverId = receiverId;
     }
 
     public int getAmount() {
@@ -61,5 +52,13 @@ public class Transaction {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public Long getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
     }
 }

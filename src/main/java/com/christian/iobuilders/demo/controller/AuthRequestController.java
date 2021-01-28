@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-public interface RegisterRequestController {
+public interface AuthRequestController {
 
-    ResponseEntity createUser(User user, Model model);
-    ResponseEntity addPicture(@RequestBody MultipartFile image);
+    ResponseEntity createUser(User user);
 }
