@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * Class that represents a Transaction object
@@ -46,7 +47,8 @@ public class Transaction {
      * @param receiver
      * @param amount
      */
-    public Transaction(Long receiver, int amount) {
+    public Transaction(Long sender,Long receiver, int amount) {
+        this.senderId=sender;
         this.receiverId = receiver;
         this.amount = amount;
     }
@@ -86,5 +88,21 @@ public class Transaction {
 
     public void setSenderId(Long senderId) {
         this.senderId = senderId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return getAmount() == that.getAmount() &&
+                getId().equals(that.getId()) &&
+                getSenderId().equals(that.getSenderId()) &&
+                Objects.equals(getReceiverId(), that.getReceiverId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getSenderId(), getReceiverId(), getAmount());
     }
 }

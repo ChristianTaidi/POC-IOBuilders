@@ -3,9 +3,13 @@ package com.christian.iobuilders.demo.service.impl;
 import com.christian.iobuilders.demo.pojos.User;
 import com.christian.iobuilders.demo.repository.UserRepository;
 import com.christian.iobuilders.demo.service.RegisterService;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
+
+import java.security.InvalidParameterException;
 
 
 @Service
@@ -32,7 +36,16 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     private boolean credentialCheck(User user){
-        //ToDo verify user input
+
+        if(user==null){
+            throw new NullPointerException("Null User");
+        }
+        if(user.getDni().length()<8 || user.getDni().length()>14){
+            throw new InvalidParameterException("DNI length is not correct");
+        }
+        if(!EmailValidator.getInstance().isValid(user.getEmail())){
+            throw new InvalidParameterException("Email is invalid");
+        }
         return true;
     }
 
