@@ -13,5 +13,5 @@ public interface TransactionRequestController {
 
     ResponseEntity performTransaction(@PathVariable Long id, @RequestBody Transaction transaction);
 
-    ResponseEntity addFunds(Transaction transaction);
+    ResponseEntity addFunds(Long id, Transaction transaction);
 }

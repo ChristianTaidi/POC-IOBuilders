@@ -5,6 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Class that represents a Transaction object
+ *
+ * It contains:
+ *
+ * - An id used to retrieve data from the database
+ * - The transaction sender´s id to identify whose balance will be decresead
+ * - The receiver id to identify whose balacne will be increased
+ * - The amount to determine how much money will be trransfered
+ *
+ * This class is also used to add funds to a user account
+ * setting only the receiver id this means that tue user is adding funds
+ * to the wallet
+ */
 @Entity
 public class Transaction {
 
@@ -19,16 +33,28 @@ public class Transaction {
     @NotNull
     private int amount;
 
+    /**
+     * Default constructor ued for JPA
+     */
     public Transaction(){
         //JPA default constructor
     }
 
 
-
+    /**
+     * Basic constructor with only a receiver and amount
+     * @param receiver
+     * @param amount
+     */
     public Transaction(Long receiver, int amount) {
         this.receiverId = receiver;
         this.amount = amount;
     }
+
+
+    /**
+     * Setters and getters
+     */
 
     public Long getId() {
         return id;

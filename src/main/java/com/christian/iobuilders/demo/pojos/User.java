@@ -1,5 +1,6 @@
 package com.christian.iobuilders.demo.pojos;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.WalletFile;
 
@@ -20,6 +21,7 @@ public class User {
     private Long id;
 
     @NotNull
+    @Column(unique = true, name = "DNI")
     @Size(max = 9, min = 7)
     private String dni;
 
