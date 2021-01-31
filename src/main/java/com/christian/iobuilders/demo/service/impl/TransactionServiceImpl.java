@@ -8,6 +8,8 @@ import com.christian.iobuilders.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -18,7 +20,7 @@ public class TransactionServiceImpl implements TransactionService {
     private UserService userService;
 
     @Override
-    public String transact(Long senderId, Transaction transaction) {
+    public Transaction transact(Long senderId, Transaction transaction) {
 
         User user = userService.getById(senderId);
         /**
@@ -36,13 +38,19 @@ public class TransactionServiceImpl implements TransactionService {
                 transactions.save(transaction);
                 userService.saveUser(user);
                 userService.saveUser(receiver);
+                return transaction;
             }else{
-
+                throw new InvalidParameterException("Receiver is null");
             }
 
+        }else{
+            throw new InvalidParameterException("Invalid sender data");
         }
 
+    }
 
+    @Override
+    public User addFunds(Long userId, Transaction transaction) {
         return null;
     }
 }

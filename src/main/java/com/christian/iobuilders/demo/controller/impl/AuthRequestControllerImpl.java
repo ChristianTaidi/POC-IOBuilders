@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
+/**
+ * controller used for authentication processes
+ * Login not implemented
+ */
 @Controller
 public class AuthRequestControllerImpl implements AuthRequestController {
 
@@ -23,6 +27,22 @@ public class AuthRequestControllerImpl implements AuthRequestController {
     private RegisterService registerService;
 
 
+    /**
+     * Post endpoint used to create a new user in the system
+     * It takes a user json objecto from the request body like
+     *
+     * URL is localhost:8080/register
+     * {
+     *     "dni":"12345678B",
+     *     "name":"Test",
+     *     "email":"test@mail",
+     *     "password":"password"
+     * }
+     *
+     *
+     * @param user
+     * @return
+     */
     @Override
     @PostMapping(value = "/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
