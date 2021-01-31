@@ -21,7 +21,6 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(unique = true, name = "DNI")
     @Size(max = 9, min = 7)
     private String dni;
 

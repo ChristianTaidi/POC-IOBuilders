@@ -67,13 +67,10 @@ public class TransactionRequestControllerImpl implements TransactionRequestContr
     @Override
     @PostMapping(value = "/addFunds/{id}", consumes = "application/json")
     public ResponseEntity addFunds(@PathVariable Long id,@RequestBody Transaction transaction) {
-        //ToDo input check
-        //ToDo call credentials management service
-        //ToDo input check
-        //        //ToDo call credentials management service
-        //        //Todo call transaction management service
-        //        //ToDo return result
-        return null;
+
+        User user = transService.addFunds(id,transaction);
+
+        return new ResponseEntity(user,HttpStatus.OK);
     }
 
 

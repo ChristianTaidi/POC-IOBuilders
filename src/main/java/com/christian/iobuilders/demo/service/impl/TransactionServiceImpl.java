@@ -8,6 +8,7 @@ import com.christian.iobuilders.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 import java.security.InvalidParameterException;
 
 @Service
@@ -22,11 +23,15 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction transact(Long senderId, Transaction transaction) {
 
+        if(transaction==null){
+            throw new NullPointerException("Null transaction");
+        }
         User user = userService.getById(senderId);
         /**
          * If user exists and have enough money, perform the transaction
          */
-        if(user!=null && user.getBalance()>transaction.getAmount()) {
+
+        if(user!=null && user.getBalance()>=transaction.getAmount()) {
 
             User receiver = userService.getById(transaction.getReceiverId());
             /**
@@ -51,6 +56,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public User addFunds(Long userId, Transaction transaction) {
-        return null;
+
+        User user = userService.getById(userId);
+        user.setBalance(user.getBalance()+transaction.getAmount());
+        userService.saveUser(user);
+        transactions.save(transaction);
+        return user;
     }
 }

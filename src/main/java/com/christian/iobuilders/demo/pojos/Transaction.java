@@ -47,6 +47,14 @@ public class Transaction {
      * @param receiver
      * @param amount
      */
+
+    public Transaction(Long receiver, int amount){
+        this.senderId=receiver;
+        this.receiverId=receiver;
+        this.amount=amount;
+        this.amount=amount;
+    }
+
     public Transaction(Long sender,Long receiver, int amount) {
         this.senderId=sender;
         this.receiverId = receiver;
