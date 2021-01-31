@@ -60,6 +60,7 @@ public class TransactionServiceImpl implements TransactionService {
         User user = userService.getById(userId);
         user.setBalance(user.getBalance()+transaction.getAmount());
         userService.saveUser(user);
+        transaction.setReceiverId(userId);
         transactions.save(transaction);
         return user;
     }
